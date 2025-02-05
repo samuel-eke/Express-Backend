@@ -1,0 +1,26 @@
+body {
+  background-color: navy;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  letter-spacing: 6px;
+  color: white;
+  font-size: 3rem;
+}
+
+div {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  height: 100vh;
+
+  align-items: center;
+}
+
+div h1:hover {
+  color: cyan;
+  cursor: pointer;
+}
+
+div img {
+  width: 300px;
+}
