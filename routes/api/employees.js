@@ -1,32 +1,16 @@
 const express = require('express')
-const router = express.Router()
-const data = {
-}
-data.employees = require('../../data/employees.json');  //this is simulating a connection to a database to retrieve data.
+const router = express.Router();
+const {
+    getEveryEmployee, updateEmployee, addNewEmployee, firedEmployee, pickOneEmployee
+} = require("../../controllers/employeeController");
 
 router.route('/')
-    .get((req, resp) => {
-        resp.json(data.employees);
-    })
-    .post((req, resp) => {
-        resp.json({
-            "firstname": req.body.firstname,
-            "lastname": req.body.lastname
-        })
-    })
-    .put((req, resp) => {
-        resp.json({
-            "firstname": req.body.firstname,
-            "lastname": req.body.lastname
-        });
-    })
-    .delete((req, resp) => {
-        resp.json({ "id": req.body.id });
-    });
+    .get(getEveryEmployee)
+    .post(addNewEmployee)
+    .put(updateEmployee)
+    .delete(firedEmployee);
 
 router.route("/:id")
-    .get((req, resp) => {
-        resp.json({ id: req.params.id });
-    });
+    .get(pickOneEmployee);
 
 module.exports = router;

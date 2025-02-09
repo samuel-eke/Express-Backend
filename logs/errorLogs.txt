@@ -1,3 +1,4 @@
 20250130	13:43:04	6042b72d-de89-49e6-ae3a-a1c53db8d10f	Error:	 This domain blocked by CORS
 20250205	14:27:59	0937360f-ee2d-4d10-a027-487f758c2471	Error:	 ENOENT: no such file or directory, stat 'C:\Users\APTECH LESSONS\Desktop\MERN sandbox\Learn express - Copy\views\sublow\file 1.html'
 20250205	14:29:26	1f5e8598-9785-4b89-9210-b8a57a793c99	Error:	 ENOENT: no such file or directory, stat 'C:\Users\APTECH LESSONS\Desktop\MERN sandbox\Learn express - Copy\views\subdir\file 1.html'
+20250209	17:16:52	01035ad8-bd88-4fbb-b063-12ba4c31945c	Error:	 This domain blocked by CORS
