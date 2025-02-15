@@ -164,3 +164,12 @@
 20250209	17:42:03	7001a25b-0fab-47ac-95c3-d08cf1ff16ec	PUT	undefined	/employees
 20250209	17:42:28	7d6d2a11-bd85-4077-be72-dd108db6b640	DELETE	undefined	/employees
 20250209	17:42:32	6b64d0d5-dcc2-43a7-98bd-9b217839c738	DELETE	undefined	/employees
+20250215	23:03:03	c02e5ee4-ba26-445b-9a70-ba0dd0da348d	POST	undefined	/signup
+20250215	23:05:16	e17326e6-98ec-40fa-b304-81d80573c5ec	POST	undefined	/signup
+20250215	23:05:38	478c9b72-8115-40af-8b96-828c8a1d11e5	POST	undefined	/signup
+20250215	23:26:19	46e1273c-47b9-413c-b284-983152cdda3a	POST	undefined	/login
+20250215	23:26:59	8a230ae0-cd21-4eb5-8dce-48c2a3567ee8	POST	undefined	/login
+20250215	23:27:47	c17a89c2-c52c-4345-ae3e-d422344795a3	POST	undefined	/login
+20250215	23:28:29	ad4ccdf7-02f3-4f40-b249-3383bd35f5e6	POST	undefined	/login
+20250215	23:29:08	fe9b2ea6-3140-470f-8cab-c9bcd13e4af7	POST	undefined	/login
+20250215	23:31:13	1b743bf9-b395-4576-a56a-b662979629fa	POST	undefined	/signup
