@@ -2,3 +2,7 @@
 20250205	14:27:59	0937360f-ee2d-4d10-a027-487f758c2471	Error:	 ENOENT: no such file or directory, stat 'C:\Users\APTECH LESSONS\Desktop\MERN sandbox\Learn express - Copy\views\sublow\file 1.html'
 20250205	14:29:26	1f5e8598-9785-4b89-9210-b8a57a793c99	Error:	 ENOENT: no such file or directory, stat 'C:\Users\APTECH LESSONS\Desktop\MERN sandbox\Learn express - Copy\views\subdir\file 1.html'
 20250209	17:16:52	01035ad8-bd88-4fbb-b063-12ba4c31945c	Error:	 This domain blocked by CORS
+20250220	13:19:17	02292152-9a49-47ed-a9dd-978e3e6397ff	TypeError:	 Cannot read properties of undefined (reading 'jwt')
+20250220	13:19:23	d7c66fb2-c1e8-4418-bfbb-4b8437173735	TypeError:	 Cannot read properties of undefined (reading 'jwt')
+20250220	14:16:13	5432b642-e10d-462b-8ecc-eaf4ec5cef04	ReferenceError:	 cookie is not defined
+20250220	14:16:36	b640053c-c7b4-4cfa-a3ae-5a2467a1892c	ReferenceError:	 cookie is not defined
