@@ -17,8 +17,14 @@ const handleUserLogin = async (req, resp) => {
     //evaluate the password
     const userMatch = await bcrypt.compare(pword, foundUser.password)
     if (userMatch) {
-        const accessToken = jwt.sign(
-            { "username": foundUser.username },
+        const roles = Object.values(foundUser.roles)
+        const accessToken = jwt.sign(  //new addition
+            {
+                "UserInfo": {
+                    "username": foundUser.username,
+                    "roles": roles
+                }
+            },
             process.env.ACCESS_TOKEN_SECRET,
             { expiresIn: '90s' }
         );
@@ -35,7 +41,7 @@ const handleUserLogin = async (req, resp) => {
             path.join(__dirname, '..', 'model', 'users.json'),
             JSON.stringify(userDB.users)
         );
-        resp.cookie('jwt', refreshToken, { httpOnly: true, sameSite: 'None', secure: true, maxAge: 24 * 60 * 60 * 1000 });
+        resp.cookie('jwt', refreshToken, { httpOnly: true, sameSite: 'None', secure: false, maxAge: 24 * 60 * 60 * 1000 });
 
         console.log(refreshToken);
 

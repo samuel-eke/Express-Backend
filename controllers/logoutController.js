@@ -29,7 +29,7 @@ const handleLogout = async (req, res) => {
         path.join(__dirname, '..', 'model', 'users.json'),
         JSON.stringify(userDB.users)
     );
-    res.clearCookie('jwt', refreshToken, { httpOnly: true, sameSite: 'None', secure: true, maxAge: 24 * 60 * 60 * 1000 })
+    res.clearCookie('jwt', refreshToken, { httpOnly: true, sameSite: 'None', secure: false, maxAge: 24 * 60 * 60 * 1000 })
     return res.sendStatus(204);
 }
 

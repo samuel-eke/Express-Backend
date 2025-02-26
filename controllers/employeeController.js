@@ -2,13 +2,15 @@ const data = {
     employees: require('../model/employees.json'),
     setEmployees: function (data) { this.employees = data }
 }
+const fsPromises = require("fs").promises;
+const path = require("path");
 //this is simulating a connection to a database to retrieve data.
 
 const getEveryEmployee = (req, resp) => {
     resp.json(data.employees);
 }
 
-function addNewEmployee(req, resp) {
+async function addNewEmployee(req, resp) {
     const newEmployee = {
         id: data.employees[data.employees.length - 1].id + 1 || 1,
         firstname: req.body.firstname,
@@ -20,6 +22,15 @@ function addNewEmployee(req, resp) {
     }
 
     data.setEmployees([...data.employees, newEmployee]);
+    try {
+        await fsPromises.writeFile(
+            path.join(__dirname, "..", "model", "employees.json"),
+            JSON.stringify(data.employees)
+        );
+        resp.status(201).json({ "message": `New user ${newEmployee.firstname} ${newEmployee.lastname}, successfully added` });
+    } catch (error) {
+        return resp.status(500).json({ "message": error.message });
+    }
     resp.json(data.employees);
 }
 
@@ -29,6 +40,7 @@ function updateEmployee(req, resp) {
         return resp.status(400).json({
             "message": `Employee ID ${req.body.id} was not found in the database`
         });
+
     }
     if (req.body.firstname) employee.firstname = req.body.firstname;
     if (req.body.lastname) employee.firstname = req.body.lastname;

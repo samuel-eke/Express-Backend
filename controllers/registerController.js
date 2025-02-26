@@ -18,7 +18,14 @@ const handleNewUser = async (req, resp) => {
         const hashedPword = await bcrypt.hash(pword, 10);
 
         //to store the user on the mockdb
-        const newUser = { "username": user, "password": hashedPword, "realPassword": pword }
+        const newUser = {
+            "username": user,
+            "password": hashedPword,
+            "realPassword": pword,
+            "roles": {  //new addition
+                "User": 2001
+            }
+        }
         userDB.setUsers([...userDB.users, newUser]);
 
         await fsPromises.writeFile(
