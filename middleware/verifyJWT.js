@@ -1,5 +1,5 @@
 const jwt = require("jsonwebtoken")
-require("dotenv").config()
+ 
 
 const veriftyJWT = (req, resp, next) => {
     const authHeader = req.headers.authorization || req.headers.Authorization;  //new addition

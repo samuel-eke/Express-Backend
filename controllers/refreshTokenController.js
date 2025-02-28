@@ -39,7 +39,7 @@ const userDB = {
     setUsers: function (data) { this.users = data }
 }
 const jwt = require("jsonwebtoken");
-require('dotenv').config();
+
 
 const handleRefreshToken = async (req, res) => {
     const cookies = req.cookies;
