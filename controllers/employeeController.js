@@ -1,13 +1,10 @@
-const data = {
-    employees: require('../model/employees.json'),
-    setEmployees: function (data) { this.employees = data }
-}
-const fsPromises = require("fs").promises;
-const path = require("path");
+const Employees = require("../model/Hire");
 //this is simulating a connection to a database to retrieve data.
 
-const getEveryEmployee = (req, resp) => {
-    resp.json(data.employees);
+const getEveryEmployee = async (req, resp) => {
+    const employees = await Employees.find();
+    if (!employees) return resp.status(204).json({ "msg": "No employees found" });
+    resp.json(employees);
 }
 
 async function addNewEmployee(req, resp) {

@@ -1,15 +1,11 @@
-const userDB = {
-    users: require("../model/users.json"),
-    setUsers: function (data) { this.users = data }
-}
-const fsPromises = require("fs").promises;
-const path = require("path");
+const User = require("../model/User");
 const bcrypt = require("bcrypt");
 
 const handleNewUser = async (req, resp) => {
     const { user, pword } = req.body;
     if (!user || !pword) return resp.status(400).json({ "Message": "Username and password was not received" }); //this cheks if the request came in with a username and password
-    const duplicateUser = userDB.users.find(person => person.username == user); //this checkts for duplicated user
+
+    const duplicateUser = await User.findOne({ username: user }).exec(); //this checkts for duplicated user
 
     if (duplicateUser) return resp.sendStatus(409);
 
@@ -17,21 +13,14 @@ const handleNewUser = async (req, resp) => {
         //encrypt password using the bcrypt library
         const hashedPword = await bcrypt.hash(pword, 10);
 
-        //to store the user on the mockdb
-        const newUser = {
+        //to create and store the user on the mongoDB
+        const result = await User.create({
             "username": user,
             "password": hashedPword,
             "realPassword": pword,
-            "roles": {  //new addition
-                "User": 2001
-            }
-        }
-        userDB.setUsers([...userDB.users, newUser]);
+        })
 
-        await fsPromises.writeFile(
-            path.join(__dirname, "..", "model", "users.json"),
-            JSON.stringify(userDB.users)
-        );
+        console.log(result);
         resp.status(201).json({ "message": `The person ${user} has been created` });
         console.log(userDB.users);
     } catch (err) {

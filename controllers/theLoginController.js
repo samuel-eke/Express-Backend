@@ -1,17 +1,14 @@
-const userDB = {
-    users: require("../model/users.json"),
-    setUsers: function (data) { this.users = data }
-}
+const User = require("../model/User");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
-const fsPromises = require('fs').promises;
-const path = require('path')
+
 
 const handleUserLogin = async (req, resp) => {
     const { user, pword } = req.body;
     if (!user || !pword) return resp.status(400).json({ "Message": "Username and password was not received" });
     //confirm if user exists
-    const foundUser = userDB.users.find(person => person.username === user);
+    const foundUser = await User.findOne({ username: user }).exec();
+
     if (!foundUser) { return resp.sendStatus(401) }
     //evaluate the password
     const userMatch = await bcrypt.compare(pword, foundUser.password)
@@ -32,14 +29,10 @@ const handleUserLogin = async (req, resp) => {
             process.env.REFRESH_TOKEN_SECRET,
             { expiresIn: '1d' }
         );
-        const otherUsers = userDB.users.filter(person => person.username !== foundUser.username);
-        const currentUser = { ...foundUser, refreshToken }
-        userDB.setUsers([...otherUsers, currentUser]);
 
-        await fsPromises.writeFile(
-            path.join(__dirname, '..', 'model', 'users.json'),
-            JSON.stringify(userDB.users)
-        );
+        foundUser.refreshToken = refreshToken;
+        const result = await foundUser.save();
+
         resp.cookie('jwt', refreshToken, { httpOnly: true, sameSite: 'None', secure: false, maxAge: 24 * 60 * 60 * 1000 });
 
         console.log(refreshToken);
