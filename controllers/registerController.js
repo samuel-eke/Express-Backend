@@ -8,7 +8,6 @@ const handleNewUser = async (req, resp) => {
     const duplicateUser = await User.findOne({ username: user }).exec(); //this checkts for duplicated user
 
     if (duplicateUser) return resp.sendStatus(409);
-
     try {
         //encrypt password using the bcrypt library
         const hashedPword = await bcrypt.hash(pword, 10);
@@ -22,7 +21,6 @@ const handleNewUser = async (req, resp) => {
 
         console.log(result);
         resp.status(201).json({ "message": `The person ${user} has been created` });
-        console.log(userDB.users);
     } catch (err) {
         return resp.status(500).json({ "message": err.message })
     }

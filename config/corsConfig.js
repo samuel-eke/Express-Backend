@@ -1,4 +1,4 @@
-const whitelist = ['https://www.thewebsitedomain.com', 'http://devwebsite:portnumber', 'http://localhost:3500', 'https://claude.ai'];
+const whitelist = ['http://devwebsite:portnumber', 'http://localhost:3500', 'http://localhost:3000'];
 const corsOptions = {
     origin: (origin, callback) => {
         if (whitelist.indexOf(origin) !== -1 || !origin) {

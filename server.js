@@ -31,5 +31,6 @@ app.use(errHandler);
 
 mongoose.connection.once('open', () => {
     console.log("DB connected");
+
     app.listen(PORT, () => console.log(`The server is running on port http://localhost/${PORT}`))
 })
