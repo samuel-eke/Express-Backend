@@ -39,7 +39,8 @@ const handleUserLogin = async (req, resp) => {
 
         return resp.status(200).json({
             success: true,
-            accessToken
+            accessToken,
+            "message": "Yo, u logged in, init mate"
         });
     } else {
         resp.sendStatus(401)
