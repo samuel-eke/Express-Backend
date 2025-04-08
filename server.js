@@ -3,9 +3,7 @@ const express = require("express");
 const app = express();
 const path = require('path')
 const PORT = process.env.PORT || 3501;
-
 const cors = require('cors');
-const errHandler = require('./middleware/errorHandler');
 const corsOptions = require('./config/corsConfig');
 const veriftyJWT = require("./middleware/verifyJWT");
 const cookieParser = require("cookie-parser");
@@ -13,7 +11,6 @@ const mongoose = require("mongoose");
 const connectDB = require("./config/dbConnect.js")
 
 connectDB();
-
 app.use(cors(corsOptions));
 app.use(express.urlencoded({ extended: false }))
 app.use(cookieParser());
@@ -27,7 +24,6 @@ app.use("/refresh", require("./routes/refresh"))
 
 app.use('/employees', veriftyJWT, require("./routes/api/employees"));
 app.use('/', require("./routes/root"));
-app.use(errHandler);
 
 mongoose.connection.once('open', () => {
     console.log("DB connected");
