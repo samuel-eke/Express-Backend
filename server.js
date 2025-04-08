@@ -3,7 +3,7 @@ const express = require("express");
 const app = express();
 const path = require('path')
 const PORT = process.env.PORT || 3501;
-const { logger } = require("./middleware/logger")
+
 const cors = require('cors');
 const errHandler = require('./middleware/errorHandler');
 const corsOptions = require('./config/corsConfig');
@@ -13,7 +13,7 @@ const mongoose = require("mongoose");
 const connectDB = require("./config/dbConnect.js")
 
 connectDB();
-app.use(logger);
+
 app.use(cors(corsOptions));
 app.use(express.urlencoded({ extended: false }))
 app.use(cookieParser());
